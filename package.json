@@ -26,10 +26,8 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "ts-node server.ts",
+    "start": "ts-node server.ts",
     "tsc": "tsc",
-    "build": "tsc",
     "nodemon": "nodemon"
   },
   "devDependencies": {
