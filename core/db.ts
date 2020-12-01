@@ -3,8 +3,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = Promise;
 
 mongoose.connect(
-  process.env.MONGODB_URL ||
-    // 'mongodb://127.0.0.1:27017/focus' ||
+  process.env.MONGOLAB_URL ||
     'mongodb+srv://UserAdm:kodfg123@cluster0.3ydia.mongodb.net/focus?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
