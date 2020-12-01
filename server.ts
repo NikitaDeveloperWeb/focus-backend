@@ -1,4 +1,3 @@
-//для использования окружения(надо ставить выше всего кода)
 import dotenv from 'dotenv';
 dotenv.config();
 //import express
