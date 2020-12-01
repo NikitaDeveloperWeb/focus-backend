@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^8.5.0",
