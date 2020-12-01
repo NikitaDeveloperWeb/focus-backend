@@ -1,5 +1,5 @@
 //для использования окружения(надо ставить выше всего кода)
-import dotenv = require('dotenv');
+import dotenv from 'dotenv';
 dotenv.config();
 //import express
 import express = require('express');
