@@ -30,7 +30,8 @@
     "dev": "ts-node server.ts",
     "tsc": "tsc",
     "nodemon": "nodemon",
-    "postinstall": "npm run tsc"
+    "postinstall": "npm run tsc",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",
