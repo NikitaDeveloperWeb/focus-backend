@@ -19,7 +19,8 @@ const app = express();
 //for request axios in frontend
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Origin', 'https://focus-front.herokuapp.com/'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'https://focus-front.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', 'focus-front.herokuapp.com'); // update to match the domain you will make the request from
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
   res.header(
     'Access-Control-Allow-Headers',
