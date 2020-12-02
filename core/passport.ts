@@ -1,12 +1,16 @@
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import { IVerifyOptions, Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { UserModel, UserModelInterface } from '../models/UserModel';
 import { generateMD5 } from '../utils/generateHash';
 
 passport.use(
   new LocalStrategy(
-    async (username: string, password: string, done): Promise<void> => {
+    async (
+      username: string,
+      password: string,
+      done: (error: any, user?: any, options?: IVerifyOptions | undefined) => void,
+    ): Promise<void> => {
       try {
         const user = await UserModel.findOne({ $or: [{ email: username }, { username }] }).exec();
         //первая проверка
