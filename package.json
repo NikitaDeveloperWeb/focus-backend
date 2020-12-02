@@ -33,8 +33,10 @@
     "tsc": "tsc"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
     "@types/passport": "^1.0.4",
-    "@types/passport-local": "^1.0.33"
+    "@types/passport-local": "^1.0.33",
+    "cors": "^2.8.5"
   }
 }
