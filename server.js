@@ -21,7 +21,7 @@ var updatePost_1 = require("./validations/updatePost");
 //init express
 var cors = require('cors');
 var app = express();
-//use cors
+//use cors politic
 app.use(cors());
 //for request axios in frontend
 // app.use(function (req, res, next) {
