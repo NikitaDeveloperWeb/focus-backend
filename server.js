@@ -19,49 +19,65 @@ var createPostValidation_1 = require("./validations/createPostValidation");
 var register_1 = require("./validations/register");
 var updatePost_1 = require("./validations/updatePost");
 //init express
+var cors = require('cors');
 var app = express();
+//use cors
+app.use(cors());
 //for request axios in frontend
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Origin', 'https://focus-front.herokuapp.com');
-    res.header('Access-Control-Allow-Origin', 'focus-front.herokuapp.com'); // update to match the domain you will make the request from
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization ');
-    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS,DELETE');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-});
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept, Authorization ',
+//   );
+//   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS,DELETE');
+//   res.header('Access-Control-Allow-Headers', '*');
+//   next();
+// });
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+    methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: [
+        'Origin',
+        'Authorization',
+        'Content-Type',
+        'X-Requested-With',
+        'Access-Control-Allow-Headers',
+    ],
+};
 //app start
 app.use(express.json());
 //initial passport
 app.use(passport_1.passport.initialize());
 //route
 //get list users
-app.get('/users', UserController_1.UserCtrl.index);
+app.get('/users', cors(corsOptions), UserController_1.UserCtrl.index);
 //auth with token
-app.get('/users/me', passport_1.passport.authenticate('jwt', { session: false }), UserController_1.UserCtrl.getUserInfo);
+app.get('/users/me', passport_1.passport.authenticate('jwt', { session: false }), cors(corsOptions), UserController_1.UserCtrl.getUserInfo);
 //get one user
-app.get('/users/:id', UserController_1.UserCtrl.show);
+app.get('/users/:id', cors(corsOptions), UserController_1.UserCtrl.show);
 //get one user
-app.patch('/edit/user/:id', passport_1.passport.authenticate('jwt'), UserController_1.UserCtrl.update);
+app.patch('/edit/user/:id', passport_1.passport.authenticate('jwt'), cors(corsOptions), UserController_1.UserCtrl.update);
 //get posts
-app.get('/posts', PostController_1.PostCtrl.index);
+app.get('/posts', cors(corsOptions), PostController_1.PostCtrl.index);
 //get post
-app.get('/post/:id', PostController_1.PostCtrl.show);
+app.get('/post/:id', cors(corsOptions), PostController_1.PostCtrl.show);
 //create posts
-app.post('/post', passport_1.passport.authenticate('jwt'), createPostValidation_1.createPostValidations, PostController_1.PostCtrl.create);
+app.post('/post', passport_1.passport.authenticate('jwt'), cors(corsOptions), cors(corsOptions), createPostValidation_1.createPostValidations, PostController_1.PostCtrl.create);
 //update posts
-app.patch('/post/:id', passport_1.passport.authenticate('jwt'), updatePost_1.updatePostValidations, PostController_1.PostCtrl.update);
+app.patch('/post/:id', passport_1.passport.authenticate('jwt'), cors(corsOptions), updatePost_1.updatePostValidations, PostController_1.PostCtrl.update);
 //delete post
-app.delete('/post/:id', passport_1.passport.authenticate('jwt'), PostController_1.PostCtrl.delete);
+app.delete('/post/:id', passport_1.passport.authenticate('jwt'), cors(corsOptions), PostController_1.PostCtrl.delete);
 //verify user
-app.get('/auth/verify', register_1.registerValidations, UserController_1.UserCtrl.verify);
+app.get('/auth/verify', register_1.registerValidations, cors(corsOptions), UserController_1.UserCtrl.verify);
 //registry
-app.post('/auth/register', register_1.registerValidations, UserController_1.UserCtrl.create);
+app.post('/auth/register', register_1.registerValidations, cors(corsOptions), UserController_1.UserCtrl.create);
 //auth user
-app.post('/auth/login', passport_1.passport.authenticate('local'), UserController_1.UserCtrl.afterLogin);
+app.post('/auth/login', passport_1.passport.authenticate('local'), cors(corsOptions), UserController_1.UserCtrl.afterLogin);
 //logout
-app.get('/logout', function (req, res) {
+app.get('/logout', cors(corsOptions), function (req, res) {
     req.logOut();
     res.redirect('/');
     console.log('logout');
