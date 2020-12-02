@@ -1,1 +1,1 @@
-web: node-ts server.ts
+web: yarn start

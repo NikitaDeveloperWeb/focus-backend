@@ -4,8 +4,8 @@ mongoose.Promise = Promise;
 
 mongoose.connect(
   process.env.MONGOLAB_URI ||
-    'mongodb://127.0.0.1:27017/focus' ||
-    'mongodb+srv://UserAdm:kodfg123@cluster0.3ydia.mongodb.net/?retryWrites=true&w=majority',
+    'mongodb+srv://UserAdm:kodfg123@cluster0.3ydia.mongodb.net/focus?retryWrites=true&w=majority' ||
+    'mongodb://127.0.0.1:27017/focus',
   {
     useNewUrlParser: true,
     useCreateIndex: true,
