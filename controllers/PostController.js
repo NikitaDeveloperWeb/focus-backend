@@ -55,6 +55,7 @@ var PostController = /** @class */ (function () {
                         return [4 /*yield*/, PostModel_1.PostModel.find({}).exec()];
                     case 1:
                         posts = _a.sent();
+                        posts.reverse();
                         res.json(posts);
                         return [3 /*break*/, 3];
                     case 2:

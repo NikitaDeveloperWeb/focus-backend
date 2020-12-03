@@ -10,7 +10,7 @@ class PostController {
   async index(_: any, res: express.Response): Promise<void> {
     try {
       const posts = await PostModel.find({}).exec();
-
+      posts.reverse();
       res.json(posts);
     } catch (error) {
       res.status(500).json({
